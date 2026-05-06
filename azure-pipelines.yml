@@ -26,14 +26,6 @@ stages:
         versionSpec: '$(pythonVersion)'
       displayName: 'Use Python $(pythonVersion)'
 
-    - powershell: |
-        Invoke-WebRequest -Uri "https://astral.sh/uv/install.sh" -OutFile "install-uv.sh"
-        bash install-uv.sh
-        Remove-Item install-uv.sh
-        $env:PATH += ";$env:USERPROFILE\.cargo\bin"
-        Write-Host "##vso[task.setvariable variable=PATH]$env:PATH"
-      displayName: 'Install uv (Windows)'
-
     - script: |
         uv sync
       displayName: 'Install dependencies with uv'
