@@ -1,0 +1,36 @@
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[project]
+name = "azuredemo"
+version = "0.1.0"
+description = "Azure DevOps CI/CD Demo Project - Azure Resource Usage Analyzer"
+authors = [
+  { name = "Developer", email = "dev@example.com" }
+]
+readme = "README.md"
+requires-python = ">=3.10"
+
+[project.scripts]
+azuredemo = "azuredemo.main:main"
+
+[tool.pytest.ini_options]
+testpaths = ["tests"]
+addopts = "--cov=azuredemo --cov-report=term-missing --cov-report=html"
+
+[tool.coverage.run]
+source = ["azuredemo"]
+
+[tool.coverage.report]
+show_missing = true
+fail_under = 80
+
+[tool.uv]
+resolution = "highest"
+
+[dependency-groups]
+dev = [
+    "pytest>=9.0.3",
+    "pytest-cov>=7.1.0",
+]
